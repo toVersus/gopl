@@ -6,11 +6,15 @@ import (
 	"os"
 )
 
-func main() {
+func echo(args []string) string {
 	s, sep := "", ""
-	for _, arg := range os.Args[1:] {
+	for _, arg := range args[1:] {
 		s += sep + arg
 		sep = " "
 	}
-	fmt.Println(s)
+	return s
+}
+
+func main() {
+	fmt.Println(echo(os.Args))
 }
