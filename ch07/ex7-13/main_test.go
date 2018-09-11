@@ -36,3 +36,25 @@ func TestEval(t *testing.T) {
 		}
 	}
 }
+
+func TestString(t *testing.T) {
+	tests := []string{
+		"sqrt(A / pi)",
+		"pow(x, 3) + pow(y, 3)",
+		"5 / 9 * (F - 32)",
+	}
+
+	for _, test := range tests {
+		expr1, err := Parse(test)
+		if err != nil {
+			t.Error(err)
+		}
+		expr2, err := Parse(expr1.String())
+		if err != nil {
+			t.Error(err)
+		}
+		if expr1.String() != expr2.String() {
+			t.Errorf("%s != %s", expr1.String(), expr2.String())
+		}
+	}
+}
